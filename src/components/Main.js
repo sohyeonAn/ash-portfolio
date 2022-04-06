@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import HomeButton from "./commons/HomeButton";
 import Logo from "./commons/Logo";
 import SocialIcons from "./commons/SocialIcons";
-import { Dog, Hedge } from "./commons/AllSvgs";
+import { Dog, Hand, Hedge } from "./commons/AllSvgs";
 
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
@@ -46,7 +46,7 @@ const Blog = styled(NavLink)`
   z-index: 1;
 `;
 const Work = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   position: absolute;
   top: 50%;
   left: calc(1rem + 2vw);
@@ -55,7 +55,7 @@ const Work = styled(NavLink)`
   z-index: 1;
 `;
 const About = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   text-decoration: none;
   z-index: 1;
 `;
@@ -114,6 +114,19 @@ const Center = styled.button`
     padding-top: 1rem;
   }
 `;
+
+const DarkDiv = styled.div`
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  width: ${(props) => (props.click ? "50%" : "0%")};
+  height: ${(props) => (props.click ? "100%" : "0%")};
+  z-index: 1;
+
+  transition: height 0.5s ease, width 1s ease 0.5s;
+`;
 const Main = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => {
@@ -122,13 +135,12 @@ const Main = () => {
   return (
     <MainContainer>
       <Container>
+        <DarkDiv click={click} />
         <HomeButton />
-        <Logo />
-        <SocialIcons />
-
+        <Logo theme={click ? "dark" : "light"} />
+        <SocialIcons theme={click ? "dark" : "light"} />
         <Center click={click}>
           <Dog onClick={() => handleClick()} />
-          {/* <Hedge onClick={() => handleClick()} /> */}
           <span>click here</span>
         </Center>
 
@@ -142,11 +154,11 @@ const Main = () => {
         <Blog to="/blog">
           <h2>Blog</h2>
         </Blog>
-        <Work to="/work">
+        <Work to="/work" click={click}>
           <h2>Work</h2>
         </Work>
         <BottomBar>
-          <About to="/about">
+          <About to="/about" click={click}>
             <h2>About.</h2>
           </About>
           <Skills to="/skills">

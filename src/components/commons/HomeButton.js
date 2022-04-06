@@ -9,7 +9,7 @@ const Home = styled.button`
   left: 50%;
   transform: translate(-50%, 0);
 
-  background-color: transparent;
+  background-color: ${(props) => props.theme.body};
   padding: 0.3rem;
   border: none;
   border-radius: 50%;

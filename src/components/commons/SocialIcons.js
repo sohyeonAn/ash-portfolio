@@ -1,7 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ImGithub, ImTwitter } from "react-icons/im";
+
+import { darkTheme } from "../Themes";
+import { propTypes } from "@sanity/block-content-to-react";
 
 const Icons = styled.div`
   display: flex;
@@ -26,33 +28,28 @@ const Icons = styled.div`
 const Line = styled.span`
   width: 2px;
   height: 8rem;
-  background-color: ${(props) => props.theme.text};
+  background-color: ${(props) =>
+    props.theme === "dark" ? darkTheme.text : darkTheme.body};
 `;
 
-const SocialIcons = () => {
+const SocialIcons = (props) => {
   return (
     <Icons>
       <div>
-        <a
-          style={{ color: "inherit" }}
-          href="https://github.com/sohyeonAn"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <ImGithub />
+        <a href="https://github.com/sohyeonAn" target="_blank" rel="noreferrer">
+          <ImGithub
+            fill={props.theme === "dark" ? darkTheme.text : darkTheme.body}
+          />
         </a>
       </div>
       <div>
-        <a
-          style={{ color: "inherit" }}
-          href="https://github.com/sohyeonAn"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <ImTwitter />
+        <a href="https://github.com/sohyeonAn" target="_blank" rel="noreferrer">
+          <ImTwitter
+            fill={props.theme === "dark" ? darkTheme.text : darkTheme.body}
+          />
         </a>
       </div>
-      <Line />
+      <Line theme={props.theme} />
     </Icons>
   );
 };
