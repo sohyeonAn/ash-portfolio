@@ -1,25 +1,30 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import SinglePost from "./components/SinglePost";
-import Post from "./components/Post";
-import Project from "./components/Project";
-import Navbar from "./components/Navbar";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./components/Themes";
+import GlobalStyle from "./globalStyles";
 
-function App() {
+import Main from "./components/Main";
+import About from "./components/About";
+import Blog from "./components/Blog";
+import Work from "./components/Work";
+import Skills from "./components/Skills";
+
+const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/post/:slug" element={<SinglePost />} />
-        <Route path="/post" element={<Post />} />
-        <Route path="/project" element={<Project />} />
-      </Routes>
-      ;
-    </BrowserRouter>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={lightTheme}>
+        <Routes>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/blog" element={<Blog />}></Route>
+          <Route path="/work" element={<Work />}></Route>
+          <Route path="/skills" element={<Skills />}></Route>
+        </Routes>
+      </ThemeProvider>
+    </>
   );
-}
+};
 
 export default App;

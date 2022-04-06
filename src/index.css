@@ -1,4 +1,4 @@
-@import url('https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css');
+/* @import url('https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css');
 @import url("https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 
@@ -15,4 +15,34 @@
 
 .home-name {
   font-size: 150px;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+:root {
+  --font-base: "DM Sans", sans-serif;
+
+  --primary-color: #edf2f8;
+  --secondary-color: #313bac;
+  --black-color: #030303;
+  --lightGray-color: #e4e4e4;
+  --gray-color: #6b7688;
+  --brown-color: #46364a;
+  --white-color: #ffffff;
+
+
+  /* --primary-color: #e99e75;
+  --secondary-color: #9f9bbc;
+  --black-color: #292643;
+  --lightGray-color: #e4e4e4;
+  --gray-color: #776483;
+  --brown-color: #bbaabb;
+  --white-color: #ffffff; */
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
