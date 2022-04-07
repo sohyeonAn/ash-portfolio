@@ -31,9 +31,11 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
 
+  transition: background-color 0.3s ease;
+
   &:hover {
     color: ${(props) => props.theme.body};
-    background-color: ${(props) => props.theme.text};
+    background-color: ${(props) => `rgba(${props.theme.textRgba}, 0.7)`};
   }
 `;
 
