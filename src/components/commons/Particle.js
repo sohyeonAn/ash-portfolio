@@ -17,7 +17,7 @@ const Particle = (props) => {
     <Box>
       <Particles
         style={{ position: "absolute", top: 0 }}
-        options={props.theme === "light" ? lightParticle : darkParticle}
+        options={props.theme === "light" ? darkParticle : lightParticle}
       />
       );
     </Box>

@@ -88,9 +88,9 @@ const Skills = () => {
   return (
     <ThemeProvider theme={lightTheme}>
       <Box>
-        <Logo />
+        <Logo theme="light" />
         <SocialIcons theme="light" />
-        <HomeButton theme="light" />
+        <HomeButton />
         <Particle theme="light" />
         <Main>
           <Section>
