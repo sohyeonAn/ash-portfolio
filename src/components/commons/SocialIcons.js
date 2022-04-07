@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { ImGithub, ImTwitter } from "react-icons/im";
 
 import { darkTheme } from "../Themes";
-import { propTypes } from "@sanity/block-content-to-react";
 
 const Icons = styled.div`
   display: flex;

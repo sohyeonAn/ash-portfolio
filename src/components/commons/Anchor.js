@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { ArrowDown, Chain, Dog, DotLine, Hedge, Link, Spring } from "./AllSvgs";
+import { Chain, Dog } from "./AllSvgs";
 const Container = styled.div`
   position: relative;
 `;
@@ -24,9 +24,6 @@ const PreDisplay = styled.div`
   position: fixed;
   top: 0;
   right: 2rem;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 `;
 
 const Anchor = (props) => {

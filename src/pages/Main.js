@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 
 import { HomeButton, Logo, SocialIcons } from "../components/commons";
-import { Dog, Hand, Hedge } from "../components/commons/AllSvgs";
+import { Dog } from "../components/commons/AllSvgs";
 import Intro from "../components/Intro";
 
 const MainContainer = styled.div`
