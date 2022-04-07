@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import { motion } from "framer-motion";
+
 import HomeButton from "./commons/HomeButton";
 import Logo from "./commons/Logo";
 import SocialIcons from "./commons/SocialIcons";
 import { Dog, Hand, Hedge } from "./commons/AllSvgs";
+import Intro from "./Intro";
 
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
@@ -19,7 +22,7 @@ const MainContainer = styled.div`
   h4,
   h5,
   h6 {
-    font-family: "Karla", sans-serif;
+    font-family: "Hahmlet", sans-serif;
     font-weight: 500;
   }
 `;
@@ -116,7 +119,7 @@ const Center = styled.button`
 `;
 
 const DarkDiv = styled.div`
-  background-color: #000;
+  background-color: ${(props) => props.theme.text};
   position: absolute;
   top: 0;
   bottom: 0;
@@ -127,7 +130,7 @@ const DarkDiv = styled.div`
 
   transition: height 0.5s ease, width 1s ease 0.5s;
 `;
-const Main = () => {
+const Main = (props) => {
   const [click, setClick] = useState(false);
   const handleClick = () => {
     setClick(!click);
@@ -149,23 +152,34 @@ const Main = () => {
           target="_blank"
           rel="referrer"
         >
-          <h2>Contact</h2>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTab={{ scale: 0.9 }}>
+            Contact
+          </motion.h2>
         </Contact>
         <Blog to="/blog">
-          <h2>Blog</h2>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTab={{ scale: 0.9 }}>
+            Blog
+          </motion.h2>
         </Blog>
         <Work to="/work" click={click}>
-          <h2>Work</h2>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTab={{ scale: 0.9 }}>
+            Work
+          </motion.h2>
         </Work>
         <BottomBar>
           <About to="/about" click={click}>
-            <h2>About.</h2>
+            <motion.h2 whileHover={{ scale: 1.1 }} whileTab={{ scale: 0.9 }}>
+              About.
+            </motion.h2>
           </About>
           <Skills to="/skills">
-            <h2>Skills.</h2>
+            <motion.h2 whileHover={{ scale: 1.1 }} whileTab={{ scale: 0.9 }}>
+              Skills.
+            </motion.h2>
           </Skills>
         </BottomBar>
       </Container>
+      {click && <Intro click={click} />}
     </MainContainer>
   );
 };
