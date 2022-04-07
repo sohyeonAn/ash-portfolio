@@ -1,5 +1,6 @@
 import sanityClient from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
+import BlockContent from "@sanity/block-content-to-react";
 
 export const client = sanityClient({
   projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
@@ -12,3 +13,13 @@ export const client = sanityClient({
 const builder = imageUrlBuilder(client);
 
 export const urlFor = (source) => builder.image(source);
+
+export const ContentBlock = ({ content }) => {
+  return (
+    <BlockContent
+      blocks={content}
+      projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
+      dataset="production"
+    />
+  );
+};
