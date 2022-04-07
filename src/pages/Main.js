@@ -3,11 +3,9 @@ import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 
-import HomeButton from "./commons/HomeButton";
-import Logo from "./commons/Logo";
-import SocialIcons from "./commons/SocialIcons";
-import { Dog, Hand, Hedge } from "./commons/AllSvgs";
-import Intro from "./Intro";
+import { HomeButton, Logo, SocialIcons } from "../components/commons";
+import { Dog, Hand, Hedge } from "../components/commons/AllSvgs";
+import Intro from "../components/Intro";
 
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};

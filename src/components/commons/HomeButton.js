@@ -9,7 +9,7 @@ const Home = styled.button`
   left: 50%;
   transform: translate(-50%, 0);
 
-  background-color: ${(props) => props.theme.body};
+  background-color: #fff;
   padding: 0.3rem;
   border: none;
   border-radius: 50%;
@@ -19,7 +19,7 @@ const Home = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 5;
 
   cursor: pointer;
 

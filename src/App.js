@@ -4,11 +4,11 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/Themes";
 import GlobalStyle from "./globalStyles";
 
-import Main from "./components/Main";
-import About from "./components/About";
-import Blog from "./components/Blog";
-import Work from "./components/Work";
-import Skills from "./components/Skills";
+import Main from "./pages/Main";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import Work from "./pages/Work";
+import Skills from "./pages/Skills";
 
 const App = () => {
   return (
