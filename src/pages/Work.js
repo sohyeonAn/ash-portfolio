@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { motion } from "framer-motion";
 
 import { client } from "../client";
 import { HomeButton, Logo, SocialIcons } from "../components/commons";
@@ -17,7 +18,7 @@ const Box = styled.div`
   align-items: center;
 `;
 
-const Main = styled.ul`
+const Main = styled(motion.ul)`
   position: fixed;
   top: 12rem;
   left: calc(10rem + 15vw);
@@ -36,33 +37,54 @@ const Rotate = styled.span`
   height: 80px;
   z-index: 1;
 `;
+
+// framer-motion config
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
+
 const Work = () => {
-  const [works, setWorks] = useState([]);
+  const [works, setWorks] = useState(null);
   const ref = useRef(null);
   const dog = useRef(null);
 
   useEffect(() => {
     const query = '*[_type == "project"]';
-    client.fetch(query).then((data) => setWorks(data));
+    client
+      .fetch(query)
+      .then((data) => setWorks(data))
+      .catch(console.error);
 
-    let element = ref.current;
+    let element = ref?.current;
     const rotate = () => {
-      element.style.transform = `translateX(${-window.scrollY}px)`;
-      dog.current.style.transform = `rotate(${window.scrollY}deg)`;
+      if (element) {
+        element.style.transform = `translateX(${-window.scrollY}px)`;
+        dog.current.style.transform = `rotate(${window.scrollY}deg)`;
+      }
     };
     window.addEventListener("scroll", rotate);
     return () => window.removeEventListener("scroll", rotate);
-  }, []);
+  }, [works]);
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box length={works.length}>
+      <Box length={works ? works.length : 1}>
         <Logo theme="dark" />
         <SocialIcons theme="dark" />
         <HomeButton />
-        <Main ref={ref}>
-          {works &&
-            works.map((work) => <WorkItem key={work._id} data={work} />)}
-        </Main>
+        {works && (
+          <Main ref={ref} variants={container} initial="hidden" animate="show">
+            {works.map((work) => (
+              <WorkItem key={work._id} data={work} />
+            ))}
+          </Main>
+        )}
         <Rotate ref={dog}>
           <Dog width={80} height={80} fill={darkTheme.text} />
         </Rotate>

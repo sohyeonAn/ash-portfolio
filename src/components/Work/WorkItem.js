@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ImGithub } from "react-icons/im";
+import { motion } from "framer-motion";
 
-const Box = styled.li`
+const Box = styled(motion.li)`
   width: 16rem;
   height: 40vh;
   background-color: ${(props) => props.theme.text};
@@ -82,10 +83,23 @@ const Footer = styled.footer`
     }
   }
 `;
+
+// framer-motion config
+const item = {
+  hidden: { scale: 0 },
+  show: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      duration: 0.5,
+    },
+  },
+};
+
 const WorkItem = ({ data }) => {
   const { _id, title, description, tags, projectLink, codeLink } = data;
   return (
-    <Box key={_id}>
+    <Box key={_id} variants={item}>
       <Title>{title}</Title>
       <Description>{description}</Description>
       <Tags>{tags && tags.map((t, idx) => <Tag key={idx}>#{t}</Tag>)}</Tags>
