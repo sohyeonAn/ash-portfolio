@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { urlFor } from "../../client";
@@ -59,20 +60,35 @@ const DateBox = styled.span`
   padding: 0.5rem 0;
 `;
 
+const Container = styled(motion.div)``;
+// framer-motion config
+const item = {
+  hidden: { scale: 0 },
+  show: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      duration: 0.5,
+    },
+  },
+};
+
 const BlogItem = ({ blog }) => {
   console.log(blog);
   const { title, publishedAt, mainImage, tags } = blog;
   return (
-    <Box to="/">
-      {mainImage && <Image img={urlFor(mainImage)} />}
-      <Title>{title}</Title>
-      <HashTags>
-        {tags && tags.map((tag, idx) => <Tag key={idx}>#{tag}</Tag>)}
-      </HashTags>
-      <DateBox>
-        {publishedAt && new Date(publishedAt).toLocaleDateString()}
-      </DateBox>
-    </Box>
+    <Container variants={item}>
+      <Box to="/">
+        {mainImage && <Image img={urlFor(mainImage)} />}
+        <Title>{title}</Title>
+        <HashTags>
+          {tags && tags.map((tag, idx) => <Tag key={idx}>#{tag}</Tag>)}
+        </HashTags>
+        <DateBox>
+          {publishedAt && new Date(publishedAt).toLocaleDateString()}
+        </DateBox>
+      </Box>
+    </Container>
   );
 };
 

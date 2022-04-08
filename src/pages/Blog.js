@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 import { client } from "../client";
 import BlogItem from "../components/Blog/BlogItem";
 import { Logo, HomeButton, SocialIcons, Anchor } from "../components/commons";
@@ -20,7 +20,7 @@ const Container = styled.div`
   padding-bottom: 5rem;
 `;
 
-const Center = styled.div`
+const Center = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,8 +33,19 @@ const Grid = styled.div`
   grid-gap: calc(1rem + 2vw);
 `;
 
+// framer-motion config
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
+
 const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(null);
   const [numbers, setNumbers] = useState(0);
 
   useEffect(() => {
@@ -52,12 +63,20 @@ const Blog = () => {
         <HomeButton />
         <SocialIcons />
         <Anchor numbers={numbers} />
-        <Center>
-          <Grid>
-            {blogs &&
-              blogs.map((blog) => <BlogItem key={blog._id} blog={blog} />)}
-          </Grid>
-        </Center>
+        {blogs && (
+          <Center
+            variants={container}
+            initial="hidden"
+            animate="show"
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+          >
+            <Grid>
+              {blogs.map((blog) => (
+                <BlogItem key={blog._id} blog={blog} />
+              ))}
+            </Grid>
+          </Center>
+        )}
         <BigTitle text="blog" top="5rem" left="5rem" />
       </Container>
     </MainContainer>
