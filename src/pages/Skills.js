@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 import { client, urlFor } from "../client";
 import { HomeButton, Logo, SocialIcons } from "../components/commons";
+import BigTitle from "../components/commons/BigTitle";
 import Particle from "../components/commons/Particle";
 import { lightTheme } from "../components/Themes";
 
@@ -148,6 +149,7 @@ const Skills = () => {
             </IconBox>
           </Section>
         </Main>
+        <BigTitle text="skills" top="75%" right="30%" />
       </Box>
     </ThemeProvider>
   );

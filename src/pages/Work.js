@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { client } from "../client";
 import { HomeButton, Logo, SocialIcons } from "../components/commons";
 import { Dog } from "../components/commons/AllSvgs";
+import BigTitle from "../components/commons/BigTitle";
 import { darkTheme } from "../components/Themes";
 import WorkItem from "../components/Work/WorkItem";
 
@@ -12,7 +13,8 @@ const Box = styled.div`
   min-height: 100vh;
   height: ${(props) => `${props.length * 50}vh`};
   position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
 `;
 
 const Main = styled.ul`
@@ -64,6 +66,7 @@ const Work = () => {
         <Rotate ref={dog}>
           <Dog width={80} height={80} fill={darkTheme.text} />
         </Rotate>
+        <BigTitle text="work" top="10%" right="20%" />
       </Box>
     </ThemeProvider>
   );

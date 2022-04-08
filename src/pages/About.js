@@ -7,6 +7,7 @@ import { HomeButton, Logo, SocialIcons } from "../components/commons";
 import Particle from "../components/commons/Particle";
 import { darkTheme } from "../components/Themes";
 import astronaut from "../assets/images/spaceman.png";
+import BigTitle from "../components/commons/BigTitle";
 
 const Box = styled.div`
   background-color: ${(props) => props.theme.body};
@@ -91,6 +92,7 @@ const About = () => {
           <img src={astronaut} alt="spaceman" />
         </Spaceman>
         <Main>{about && <ContentBlock content={about.description} />}</Main>
+        <BigTitle text="about" top="10%" left="5%" />
       </Box>
     </ThemeProvider>
   );

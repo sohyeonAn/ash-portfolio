@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { client } from "../client";
 import BlogItem from "../components/Blog/BlogItem";
 import { Logo, HomeButton, SocialIcons, Anchor } from "../components/commons";
+import BigTitle from "../components/commons/BigTitle";
 
 const MainContainer = styled.div`
   background-color: ${(props) => props.theme.body};
@@ -57,6 +58,7 @@ const Blog = () => {
               blogs.map((blog) => <BlogItem key={blog._id} blog={blog} />)}
           </Grid>
         </Center>
+        <BigTitle text="blog" top="5rem" left="5rem" />
       </Container>
     </MainContainer>
   );
