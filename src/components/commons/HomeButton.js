@@ -1,4 +1,5 @@
 import React from "react";
+import { lightTheme } from "../Themes";
 import { BiHomeHeart } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -24,13 +25,14 @@ const Home = styled.button`
   cursor: pointer;
 
   &:hover {
-    border: 3px solid #000;
+    border: 3px solid ${lightTheme.text};
   }
 
   & > *:first-child {
     color: inherit;
   }
   svg {
+    fill: ${lightTheme.text};
     width: 30px;
     height: 30px;
   }

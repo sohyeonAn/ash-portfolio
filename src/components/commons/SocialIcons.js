@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ImGithub } from "react-icons/im";
 
-import { darkTheme } from "../Themes";
+import { darkTheme, lightTheme } from "../Themes";
 import { motion } from "framer-motion";
 
 const Icons = styled.div`
@@ -23,6 +23,20 @@ const Icons = styled.div`
   & > *:not(:last-child) {
     margin: 0.5rem 0;
   }
+
+  @media screen and (max-width: 50em) {
+    left: 1rem;
+    margin: 0.3rem 0;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: ${lightTheme.text};
+    }
+    & > *:not(:last-child) {
+      margin: 0.3rem 0;
+    }
+  }
 `;
 
 const Line = styled(motion.span)`
@@ -30,6 +44,10 @@ const Line = styled(motion.span)`
   height: 8rem;
   background-color: ${(props) =>
     props.theme === "dark" ? darkTheme.text : darkTheme.body};
+
+  @media screen and (max-width: 50em) {
+    background-color: ${lightTheme.text};
+  }
 `;
 
 const SocialIcons = (props) => {
@@ -42,6 +60,7 @@ const SocialIcons = (props) => {
       >
         <a href="https://github.com/sohyeonAn" target="_blank" rel="noreferrer">
           <ImGithub
+            theme={props.theme}
             fill={props.theme === "dark" ? darkTheme.text : darkTheme.body}
           />
         </a>

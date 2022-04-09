@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Me from "../assets/images/me.png";
 
 const Box = styled(motion.div)`
-  box-sizing: border-box;
   width: 50vw;
-  height: 50vh;
   display: flex;
 
   position: absolute;
   top: 50%;
   left: 50%;
+  right: 0;
   transform: translate(-50%, -50%);
 
   background: linear-gradient(
@@ -31,25 +30,52 @@ const Box = styled(motion.div)`
   border-left: 2px solid ${(props) => props.theme.body};
   border-right: 2px solid ${(props) => props.theme.text};
   z-index: 1;
+
+  @media screen and (max-width: 50em) {
+    flex-direction: column;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    border-top: 2px solid ${(props) => props.theme.body};
+    border-bottom: 2px solid ${(props) => props.theme.text};
+    background-image: linear-gradient(
+        ${(props) => props.theme.body} 50%,
+        ${(props) => props.theme.text} 50%
+      ),
+      linear-gradient(
+        ${(props) => props.theme.body} 50%,
+        ${(props) => props.theme.text} 50%
+      );
+    background-size: 2px 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
+  }
 `;
 
 const SubBox = styled.div`
   width: 50%;
   position: relative;
   display: flex;
-
   .pic {
     position: absolute;
-    top: 50%;
+    bottom: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
+    transform: translate(-50%, 50%);
+    width: 85%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 50em) {
+    width: 100%;
+    height: 50%;
+    .pic {
+      width: 70%;
+    }
   }
 `;
 
 const Text = styled.div`
-  font-size: 1.2rem;
+  font-size: calc(0.6rem + 0.8vw);
   color: ${(props) => props.theme.body};
   padding: 2rem;
   cursor: pointer;
@@ -57,17 +83,23 @@ const Text = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+
   & > *:last-child {
     color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.6)`};
     font-size: 0.9em;
   }
 `;
 const Intro = () => {
+  const [height, setHeight] = useState("50vh");
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 50em)").matches) {
+      setHeight("60vh");
+    }
+  }, []);
   return (
     <Box
       initial={{ height: 0 }}
-      animate={{ height: "50vh" }}
+      animate={{ height: height }}
       transition={{ type: "ease", duration: 1, delay: 1 }}
     >
       <SubBox>

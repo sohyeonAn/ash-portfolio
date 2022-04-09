@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { HomeButton, Logo, SocialIcons } from "../components/commons";
 import { Dog } from "../components/commons/AllSvgs";
 import Intro from "../components/Intro";
+import { mediaQueries } from "../components/Themes";
 
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
@@ -21,7 +22,16 @@ const MainContainer = styled.div`
   h5,
   h6 {
     font-family: "Hahmlet", sans-serif;
-    font-weight: 500;
+  }
+
+  h2 {
+    ${mediaQueries(40)`
+      font-size: 1.2em;
+    `};
+
+    ${mediaQueries(30)`
+      font-size: 1em;
+    `}
   }
 `;
 
@@ -36,6 +46,10 @@ const Contact = styled.a`
   right: calc(1rem + 2vw);
   text-decoration: none;
   z-index: 1;
+
+  @media screen and (max-width: 50em) {
+    color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
+  }
 `;
 const Blog = styled(NavLink)`
   color: ${(props) => props.theme.text};
@@ -45,6 +59,12 @@ const Blog = styled(NavLink)`
   transform: rotate(90deg) translate(0, -50%);
   text-decoration: none;
   z-index: 1;
+
+  @media screen and (max-width: 50em) {
+    color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
+    text-shadow: ${(props) =>
+      props.click ? `0 0 4px ${props.theme.text}` : "none"};
+  }
 `;
 const Work = styled(NavLink)`
   color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
@@ -54,11 +74,21 @@ const Work = styled(NavLink)`
   transform: rotate(-90deg) translate(0, -50%);
   text-decoration: none;
   z-index: 1;
+
+  @media screen and (max-width: 50em) {
+    color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
+    text-shadow: ${(props) =>
+      props.click ? `0 0 4px ${props.theme.text}` : "none"};
+  }
 `;
 const About = styled(NavLink)`
   color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   text-decoration: none;
   z-index: 1;
+
+  @media screen and (max-width: 50em) {
+    color: ${(props) => props.theme.text};
+  }
 `;
 const Skills = styled(NavLink)`
   color: ${(props) => props.theme.text};
@@ -87,8 +117,8 @@ const rotate = keyframes`
 `;
 const Center = styled.button`
   position: absolute;
-  top: ${(props) => (props.click ? "85%" : "50%")};
-  left: ${(props) => (props.click ? "92%" : "50%")};
+  top: ${(props) => (props.click ? "90%" : "50%")};
+  left: ${(props) => (props.click ? "95%" : "50%")};
   transform: translate(-50%, -50%);
   border: none;
   outline: none;
@@ -100,33 +130,60 @@ const Center = styled.button`
   justify-content: center;
   align-items: center;
 
+  color: ${(props) => props.theme.text};
   transition: all 0.7s ease-in-out;
 
   svg {
-    width: ${(props) => (props.click ? "100px" : "300px")};
-    height: ${(props) => (props.click ? "100px" : "300px")};
+    fill: ${(props) => props.theme.text};
+    width: ${(props) => (props.click ? "100px" : "250px")};
+    height: ${(props) => (props.click ? "100px" : "250px")};
+
+    @media screen and (max-width: 50em) {
+      width: ${(props) => (props.click ? "80px" : "150px")};
+      height: ${(props) => (props.click ? "80px" : "150px")};
+    }
   }
 
-  & > :first-child {
+  & > *:first-child {
     animation: ${rotate} infinite 5s linear;
   }
-  & > :last-child {
+  & > *:last-child {
     display: ${(props) => (props.click ? "none" : "inline-block")};
     padding-top: 1rem;
+  }
+
+  @media screen and (max-width: 50em) {
+    top: ${(props) => (props.click ? "90%" : "50%")};
+    left: ${(props) => (props.click ? "90%" : "50%")};
   }
 `;
 
 const DarkDiv = styled.div`
-  background-color: ${(props) => props.theme.text};
   position: absolute;
   top: 0;
   bottom: 0;
   right: 50%;
-  width: ${(props) => (props.click ? "50%" : "0%")};
-  height: ${(props) => (props.click ? "100%" : "0%")};
   z-index: 1;
 
+  width: ${(props) => (props.click ? "50%" : "0%")};
+  height: ${(props) => (props.click ? "100%" : "0%")};
+
+  background-color: ${(props) => props.theme.text};
+
   transition: height 0.5s ease, width 1s ease 0.5s;
+
+  ${(props) =>
+    props.click
+      ? mediaQueries(50)`
+    width: 100%;
+    height: 50%;
+    right: 0;
+    transition: width 0.5s ease, height 1s ease 0.5s;
+  `
+      : mediaQueries(50)`
+    width: 0;
+    height: 0;
+  `}
 `;
 const Main = (props) => {
   const [click, setClick] = useState(false);
@@ -146,6 +203,7 @@ const Main = (props) => {
         </Center>
 
         <Contact
+          click={click ? 1 : 0}
           href="mailto:ansh4393@gmail.com"
           target="_blank"
           rel="referrer"
@@ -164,7 +222,7 @@ const Main = (props) => {
             Contact
           </motion.h2>
         </Contact>
-        <Blog to="/blog">
+        <Blog to="/blog" click={click ? 1 : 0}>
           <motion.h2
             initial={{
               y: -200,
@@ -179,7 +237,7 @@ const Main = (props) => {
             Blog
           </motion.h2>
         </Blog>
-        <Work to="/work" click={click}>
+        <Work to="/work" click={click ? 1 : 0}>
           <motion.h2
             initial={{
               y: -200,
@@ -195,7 +253,7 @@ const Main = (props) => {
           </motion.h2>
         </Work>
         <BottomBar>
-          <About to="/about" click={click}>
+          <About to="/about" click={click ? 1 : 0}>
             <motion.h2
               initial={{
                 y: 200,
