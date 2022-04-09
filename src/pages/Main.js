@@ -190,13 +190,18 @@ const Main = (props) => {
   const handleClick = () => {
     setClick(!click);
   };
+  const mq = window.matchMedia("(max-width: 50em)").matches;
   return (
     <MainContainer>
       <Container>
         <DarkDiv click={click} />
         <HomeButton />
         <Logo theme={click ? "dark" : "light"} />
-        <SocialIcons theme={click ? "dark" : "light"} />
+        {mq ? (
+          <SocialIcons theme="light" />
+        ) : (
+          <SocialIcons theme={click ? "dark" : "light"} />
+        )}
         <Center click={click}>
           <Dog onClick={() => handleClick()} />
           <span>click here</span>

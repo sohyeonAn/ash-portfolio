@@ -31,7 +31,6 @@ const Icons = styled.div`
     svg {
       width: 20px;
       height: 20px;
-      fill: ${lightTheme.text};
     }
     & > *:not(:last-child) {
       margin: 0.3rem 0;
@@ -44,10 +43,6 @@ const Line = styled(motion.span)`
   height: 8rem;
   background-color: ${(props) =>
     props.theme === "dark" ? darkTheme.text : darkTheme.body};
-
-  @media screen and (max-width: 50em) {
-    background-color: ${lightTheme.text};
-  }
 `;
 
 const SocialIcons = (props) => {
