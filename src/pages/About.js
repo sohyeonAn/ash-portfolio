@@ -49,6 +49,10 @@ const Main = styled.div`
   z-index: 3;
   line-height: 1.5;
 
+  position: absolute;
+  left: calc(5rem + 5vw);
+  top: 10rem;
+
   div {
     width: 100%;
     height: inherit;
@@ -64,9 +68,17 @@ const Main = styled.div`
     }
   }
 
-  position: absolute;
-  left: calc(5rem + 5vw);
-  top: 10rem;
+  @media screen and (max-width: 50em) {
+    width: 60vw;
+    height: max-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    div {
+      font-size: calc(0.6rem + 1vw);
+    }
+  }
 `;
 const About = () => {
   const [about, setAbout] = useState(null);
