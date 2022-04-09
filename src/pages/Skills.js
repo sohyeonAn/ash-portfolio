@@ -16,6 +16,15 @@ const Box = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media screen and (max-width: 50em) {
+    flex-direction: column;
+    padding: 8rem 0;
+
+    & > *:nth-child(n + 5) {
+      margin-bottom: 5rem;
+    }
+  }
 `;
 
 const Main = styled.div`
@@ -27,7 +36,6 @@ const Main = styled.div`
   height: 60vh;
   z-index: 3;
   line-height: 1.5;
-  cursor: pointer;
 
   display: flex;
   flex-direction: column;
@@ -37,6 +45,11 @@ const Main = styled.div`
   &:hover {
     color: ${(props) => props.theme.body};
     background-color: ${(props) => `rgba(${props.theme.textRgba}, 0.7)`};
+  }
+
+  @media screen and (max-width: 50em) {
+    width: 50vw;
+    height: max-content;
   }
 `;
 
