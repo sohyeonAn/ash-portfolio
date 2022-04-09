@@ -15,12 +15,16 @@ const Box = styled(NavLink)`
 
   display: flex;
   flex-direction: column;
-  z-index: 3;
+  z-index: 5;
 
   &:hover {
     color: ${(props) => props.theme.body};
     background-color: ${(props) => props.theme.text};
     transition: all 0.3s ease;
+  }
+
+  @media screen and (max-width: 50em) {
+    width: 60vw;
   }
 `;
 
@@ -60,7 +64,6 @@ const DateBox = styled.span`
   padding: 0.5rem 0;
 `;
 
-const Container = styled(motion.div)``;
 // framer-motion config
 const item = {
   hidden: { scale: 0 },
@@ -74,10 +77,9 @@ const item = {
 };
 
 const BlogItem = ({ blog }) => {
-  console.log(blog);
   const { title, publishedAt, mainImage, tags } = blog;
   return (
-    <Container variants={item}>
+    <motion.div variants={item}>
       <Box to="/">
         {mainImage && <Image img={urlFor(mainImage)} />}
         <Title>{title}</Title>
@@ -88,7 +90,7 @@ const BlogItem = ({ blog }) => {
           {publishedAt && new Date(publishedAt).toLocaleDateString()}
         </DateBox>
       </Box>
-    </Container>
+    </motion.div>
   );
 };
 

@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { Chain, Dog } from "./AllSvgs";
 const Container = styled.div`
   position: relative;
+
+  @media screen and (max-width: 50em) {
+    display: none;
+  }
 `;
 
 const Slider = styled.div`
@@ -59,7 +63,7 @@ const Anchor = (props) => {
         <Dog width={70} height={70} />
       </PreDisplay>
       <Slider ref={ref}>
-        {[...Array(props.numbers)].map((x, idx) => (
+        {[...Array(props.numbers)].map((_, idx) => (
           <Chain key={idx} width={25} height={25} className="chain" />
         ))}
         <Dog width={70} height={70} />

@@ -13,7 +13,7 @@ const MainContainer = styled.div`
 `;
 
 const Container = styled.div`
-  background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.8)`};
+  background-color: inherit;
   width: 100%;
   height: auto;
   position: relative;
@@ -31,6 +31,10 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(calc(10rem + 15vw), 1fr));
   grid-gap: calc(1rem + 2vw);
+
+  @media screen and (max-width: 50em) {
+    grid-template-columns: 100%;
+  }
 `;
 
 // framer-motion config
