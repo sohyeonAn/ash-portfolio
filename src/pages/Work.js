@@ -12,7 +12,8 @@ import WorkItem from "../components/Work/WorkItem";
 const Box = styled.div`
   background-color: ${(props) => props.theme.body};
   min-height: 100vh;
-  height: ${(props) => `${props.length * 50}vh`};
+  height: ${(props) =>
+    `calc(100vh + (${props.length * 24}rem - 100vw) + 24rem)`};
   position: relative;
   display: flex;
   align-items: center;
@@ -21,11 +22,8 @@ const Box = styled.div`
 const Main = styled(motion.ul)`
   position: fixed;
   top: 12rem;
-  left: calc(10rem + 15vw);
-  height: 40vh;
+  left: 10rem;
   display: flex;
-
-  color: #fff;
 `;
 
 const Rotate = styled.span`
