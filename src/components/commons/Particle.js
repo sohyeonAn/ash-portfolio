@@ -19,7 +19,6 @@ const Particle = (props) => {
         style={{ position: "absolute", top: 0 }}
         options={props.theme === "light" ? darkParticle : lightParticle}
       />
-      );
     </Box>
   );
 };
